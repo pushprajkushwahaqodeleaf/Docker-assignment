@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  postgres:
+    # TODO: Add here
+
+  backend:
+    # TODO: add here
