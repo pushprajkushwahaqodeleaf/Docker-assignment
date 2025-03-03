@@ -1,8 +1,30 @@
 version: '3.8'
-
 services:
   postgres:
-    # TODO: Add here
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   backend:
-    # TODO: add here
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      HOST: postgres
+      DATABASE: mydatabase
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+    volumes:
+      - ./:/app
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
